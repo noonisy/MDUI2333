@@ -25,7 +25,6 @@
 				<div class="mdui-typo mdui-col-xs-4 mdui-col-md-3">
 					<div class="mdui-float-right mdui-text-center">
 						<div>Powered by <a href="http://typecho.org" target="_blank">Typecho</a></div>
-						<!-- <div>Theme by <a href="https://github.com/ZigZagK/typecho-theme-MDUI2333" target="_blank">MDUI2333</a></div> -->
 						<?php if ($this->options->upyuncdn=='true'){ ?><div><span style="line-height:28px;">CDN by </span><a href="https://www.upyun.com" target="_blank"><img src="<?php echo asseturl('img/upyun.png'); ?>" height=28 /></a></div>
 						<?php } else if (!empty($this->options->cdnby)) echo '<div>CDN by '.$this->options->cdnby.'</div>'; ?>
 					</div>

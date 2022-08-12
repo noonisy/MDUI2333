@@ -1,10 +1,10 @@
 <?php
-define('Version','1.4.7');
+define('Version','1.0.0');
 function asseturl($url,$type=false){
 	$debug=true;if ($debug) return Helper::options()->themeUrl.'/'.$url;
 	$pos=strpos($url,'.');$name=substr($url,$pos);if ($name=='.js' || $name=='.css') $url=str_replace($name,'.min'.$name,$url);
 	$origin=false;if ($type && !$origin) return Helper::options()->themeUrl.'/'.$url;
-	return 'https://cdn.jsdelivr.net/gh/ZigZagK/typecho-theme-MDUI2333@'.Version.'/'.$url;
+	return 'https://cdn.jsdelivr.net/gh/noonisy/MDUI2333@'.Version.'/'.$url;
 }
 function themeFields($layout){
 	$field=new Typecho_Widget_Helper_Form_Element_Text('picUrl',NULL,NULL,_t('头图地址'),_t('在这里填入一个图片 URL 地址，作为文章/页面的头图，不填则显示随机图片'));
