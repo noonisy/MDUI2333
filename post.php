@@ -21,7 +21,10 @@
 						<!-- <span class="mdui-chip-icon mdui-color-theme-accent"><i class="mdui-icon material-icons">&#xe8df;</i></span> -->
 						<span class="mdui-chip-title"><?php $this->date(); ?></span>
 					</div>
-					<div class="mdui-chip">
+                    <div class="mdui-chip">
+                        <span class="mdui-chip-title">阅读：<?php echo ViewsCounter_Plugin::getViews(); ?></span>
+					</div>
+                    <div class="mdui-chip">
 						<!-- <span class="mdui-chip-icon mdui-color-theme-accent"><i class="mdui-icon material-icons">&#xe5c3;</i></span> -->
 						<span class="mdui-chip-title"><?php $this->category(','); ?></span>
 					</div>
@@ -95,6 +98,9 @@
 		  				</div>
 		  				<?php } ?>
 					</div>
+                    <div class="mdui-card-content" style="display: flex;justify-content: right;">
+                        <span>最后编辑于：<?php echo date('Y 年 m 月 d 日 H:i' , $this->modified); ?></span>
+                    </div>
 				</div>
 				<div class="mdui-divider"></div>
 				<?php $this->need('comments.php'); ?>

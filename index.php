@@ -38,6 +38,9 @@ $plugin=Typecho_Plugin::export();
 						<!-- <span class="mdui-chip-icon mdui-color-theme-accent"><i class="mdui-icon material-icons">&#xe8df;</i></span> -->
 						<span class="mdui-chip-title"><a href="<?php $this->permalink(); ?>"><?php $this->date(); ?></a></span>
 					</div>
+                    <div class="mdui-chip">
+                        <span class="mdui-chip-title">阅读：<?php echo ViewsCounter_Plugin::getViews(); ?></span>
+					</div>
 					<div class="mdui-chip mdui-hidden-sm-down">
 						<!-- <span class="mdui-chip-icon mdui-color-theme-accent"><i class="mdui-icon material-icons">&#xe5c3;</i></span> -->
 						<span class="mdui-chip-title"><?php $this->category(','); ?></span>
