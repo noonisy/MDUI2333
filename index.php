@@ -35,21 +35,22 @@ $plugin=Typecho_Plugin::export();
 						<span class="mdui-chip-title"><a href="<?php $this->author->permalink(); ?>"><?php $this->author(); ?></a></span>
 					</div> -->
 					<div class="mdui-chip">
-						<span class="mdui-chip-icon mdui-color-theme-accent"><i class="mdui-icon material-icons">&#xe8df;</i></span>
+						<!-- <span class="mdui-chip-icon mdui-color-theme-accent"><i class="mdui-icon material-icons">&#xe8df;</i></span> -->
 						<span class="mdui-chip-title"><a href="<?php $this->permalink(); ?>"><?php $this->date(); ?></a></span>
 					</div>
 					<div class="mdui-chip mdui-hidden-sm-down">
-						<span class="mdui-chip-icon mdui-color-theme-accent"><i class="mdui-icon material-icons">&#xe5c3;</i></span>
+						<!-- <span class="mdui-chip-icon mdui-color-theme-accent"><i class="mdui-icon material-icons">&#xe5c3;</i></span> -->
 						<span class="mdui-chip-title"><?php $this->category(','); ?></span>
 					</div>
 					<?php if (count($this->tags)>0){ ?>
-					<!-- <div class="mdui-chip mdui-hidden-sm-down" mdui-menu="{target:'#posttag<?php echo $this->cid(); ?>',position:'top'}">
-						<span class="mdui-chip-icon mdui-color-theme-accent"><i class="mdui-icon material-icons">&#xe54e;</i></span>
-						<span class="mdui-chip-title">查看标签</span>
-					</div> -->
+					<div class="mdui-chip mdui-hidden-sm-down" mdui-menu="{target:'#posttag<?php echo $this->cid(); ?>',position:'top'}">
+						<!-- <span class="mdui-chip-icon mdui-color-theme-accent"><i class="mdui-icon material-icons">&#xe54e;</i></span> -->
+						<!-- <span class="mdui-chip-title">查看标签</span> -->
+                        <span class="mdui-chip-title"><?php $this->tags(','); ?></span>
+					</div>
 					<!-- <ul class="mdui-menu" id="posttag<?php echo $this->cid(); ?>">
 						<li class="mdui-menu-item mdui-ripple">
-						<?php $this->tags('</li><li class="mdui-menu-item mdui-ripple">',true,''); ?>
+						?php $this->tags('</li><li class="mdui-menu-item mdui-ripple">',true,''); ?>
 						</li>
 					</ul> -->
 					<?php } ?>
