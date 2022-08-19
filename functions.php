@@ -1,5 +1,5 @@
 <?php
-define('Version','1.0.0');
+define('Version','1.0.1');
 function asseturl($url,$type=false){
 	$debug=false;if ($debug) return Helper::options()->themeUrl.'/'.$url;
 	$pos=strpos($url,'.');$name=substr($url,$pos);if ($name=='.js' || $name=='.css') $url=str_replace($name,'.min'.$name,$url);

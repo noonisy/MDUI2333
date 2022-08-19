@@ -45,6 +45,7 @@
 	$(document).on('pjax:complete',function(){
 		mathjaxreload('pjax-container');codelinenumber('#pjax-container');
 		highlightreload('<?php echo $this->options->highlightmode; ?>','#pjax-container');closeoverlay();
+        $.getScript("<?php $this->options->themeUrl(); ?>js/codecopy.js");  //在complete后, end前
 	});
 	$(document).on('pjax:end',function(){
 		changetitle();showposttoc(<?php echo $this->options->posttoc=='true'; ?>);
@@ -53,6 +54,7 @@
 	});
 	$(document).on('pjax:error',function(e){closeoverlay();mdui.alert('PJAX加载超时，请检查网络','加载失败');e.preventDefault();});
 </script>
+<script src="<?php $this->options->themeUrl(); ?>js/codecopy.js"></script>
 <?php if ($this->options->customjs) echo $this->options->customjs; ?>
 <?php $this->footer(); ?>
 </body>
