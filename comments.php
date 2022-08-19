@@ -4,14 +4,15 @@ function threadedComments($comment,$options){ ?>
 <div class="mdui-panel" id="<?php $comment->theId(); ?>" mdui-panel>
 	<div class="mdui-panel-item mdui-panel-item-open">
 		<div class="mdui-panel-item-header">
-			<div class="mdui-panel-item-title">
-				<div class="mdui-chip mdui-hidden-xs-down">
-				<img class="mdui-chip-icon mdui-color-grey-200" src="<?php echo GravatarURL($comment->mail,100); ?>" />
+            <div class="mdui-panel-item-title">
+                <div class="mdui-chip mdui-hidden-xs-down">
+                    <img class="mdui-chip-icon mdui-color-grey-200" src="<?php echo GravatarURL($comment->mail,100); ?>" />
 					<span class="mdui-chip-title"><?php comment_author($comment); ?></span>
 				</div>
 				<img class="mdui-chip-icon mdui-color-grey-200 mdui-hidden-sm-up" src="<?php echo GravatarURL($comment->mail,100); ?>" />
 			</div>
 			<div class="mdui-panel-item-summary"><span class="mdui-hidden-xs-down"><?php $comment->date(); ?></span><span class="mdui-chip-title mdui-hidden-sm-up"><?php comment_author($comment); ?></span></div>
+            <div class="mdui-panel-item-summary"><?php $comment->location(); ?></div>
 			<i class="mdui-panel-item-arrow mdui-icon material-icons">&#xe313;</i>
 		</div>
 		<div class="mdui-panel-item-body">
@@ -20,9 +21,9 @@ function threadedComments($comment,$options){ ?>
 			<?php echo RewriteComment($comment); ?>
 			<div class="mdui-chip">
 				<?php if ($comment->authorId==$comment->ownerId){ ?>
-				<span class="mdui-chip-icon mdui-color-theme-accent" ><i class="mdui-icon material-icons">&#xe853;</i></span><span class="mdui-chip-title">博主</span>
+				<!-- <span class="mdui-chip-icon mdui-color-theme-accent" ><i class="mdui-icon material-icons">&#xe853;</i></span> --><span class="mdui-chip-title">博主</span>
 				<?php } else { ?>
-				<span class="mdui-chip-icon" ><i class="mdui-icon material-icons">&#xe417;</i></span><span class="mdui-chip-title">访客</span>
+				<!-- <span class="mdui-chip-icon" ><i class="mdui-icon material-icons">&#xe417;</i></span> --><span class="mdui-chip-title">访客</span>
 				<?php } ?>
 			</div>
 			<span class="comment-reply mdui-float-right"><?php $comment->reply('<button class="mdui-btn mdui-color-theme-accent mdui-ripple">回复</button>'); ?></span>
