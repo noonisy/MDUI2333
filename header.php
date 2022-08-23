@@ -28,6 +28,7 @@
 	<link rel="stylesheet" href="<?php echo asseturl('fonts/iconfont/iconfont.css'); ?>" />
 	<link rel="stylesheet" href="<?php echo asseturl('css/animate.min.css'); ?>" />
 	<link rel="stylesheet" href="<?php echo asseturl('css/MDUI2333.css'); ?>" />
+    <link rel="shortcut icon" href="<?php echo asseturl('icons/favicon.ico'); ?>" type="image/x-icon" />
 	<style>
 		:root {--backgroundpic:<?php echo ($this->options->backgroundPic?'url('.$this->options->backgroundPic.')':'#b3d4fc'); ?>;--themeaccent:<?php echo ThemeAccent(); ?>;--themeprimary:<?php echo ThemePrimary(); ?>;}
 		<?php if ($this->options->twemoji=='true'){ ?>

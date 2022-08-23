@@ -45,7 +45,12 @@ for (var i = 0; i < codeblocks.length; i++) {
             //清除选择区
             if (selection.rangeCount > 0) selection.removeAllRanges(); 0
         }
-        codeblocks[i].childNodes[1].addEventListener('click', copyArticle, false);
+        
+        if (codeblocks[i].childNodes.length == 2) {
+            codeblocks[i].childNodes[1].addEventListener('click', copyArticle, false);
+        } else {
+            codeblocks[i].childNodes[2].addEventListener('click', copyArticle, false);
+        }
 
     }(i);
 
