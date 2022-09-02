@@ -32,6 +32,7 @@
 				</a>'); ?>
 			</div>
 		</div>
+        <?php if ($this->user->hasLogin()){ ?>
 		<div class="mdui-collapse-item">
 			<div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
 				<i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-blue">&#xe0b9;</i>
@@ -50,6 +51,17 @@
 				<?php } ?>
 			</div>
 		</div>
+        <?php } ?>
+        <?php if ($this->user->hasLogin()){ ?>
+            <div class="mdui-collapse-item">
+                <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+                    <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-blue">&#xe02f;</i>
+                    <div class="mdui-list-item-content">访问量</div>
+                    <?php PageViews_Plugin::showPageViews('',''); ?>
+                    <!-- <i class="mdui-collapse-item-arrow mdui-icon material-icons">&#xe313;</i> -->
+                </div>
+            </div>
+        <?php } ?>
 		<div class="mdui-divider"></div>
 		<?php $this->widget('Widget_Metas_Category_List')->to($category);$last=-1; ?>
 		<?php while ($category->next()){ ?>
@@ -99,12 +111,12 @@
 			<?php } ?>
 		<?php } ?>
 		<div class="mdui-divider"></div>
-		<div class="mdui-list-item mdui-ripple">
-			<i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-brown">&#xe02f;</i>
-			<?php Typecho_Widget::widget('Widget_Stat')->to($stat); ?>
+		<!-- <div class="mdui-list-item mdui-ripple"> -->
+			<!-- <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-brown">&#xe02f;</i>
+			?php Typecho_Widget::widget('Widget_Stat')->to($stat); ?>
 			<div class="mdui-list-item-content">文章总数</div>
-			<div class="mdui-text-color-brown-900"><?php $stat->publishedPostsNum(); ?></div>
-		</div>
+			<div class="mdui-text-color-brown-900">?php $stat->publishedPostsNum(); ?></div> -->
+		<!-- </div> -->
 		<?php if ($this->options->birthday){ ?>
 		<div class="mdui-list-item mdui-ripple">
 			<i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-brown">&#xe192;</i>

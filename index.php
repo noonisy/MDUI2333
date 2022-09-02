@@ -32,7 +32,7 @@ $plugin=Typecho_Plugin::export();
 				<div class="mdui-card-actions">
 					<!-- <div class="mdui-chip mdui-hidden-xs-down">
 						<img class="mdui-chip-icon mdui-color-grey-200" src="?php echo GravatarURL($this->author->mail,100); ?>" />
-						<span class="mdui-chip-title"><a href="?php $this->author->permalink(); ?>"><?php $this->author(); ?></a></span>
+						<span class="mdui-chip-title"><a href="?php $this->author->permalink(); ?>">?php $this->author(); ?></a></span>
 					</div> -->
 					<div class="mdui-chip">
 						<!-- <span class="mdui-chip-icon mdui-color-theme-accent"><i class="mdui-icon material-icons">&#xe8df;</i></span> -->
@@ -51,7 +51,7 @@ $plugin=Typecho_Plugin::export();
 						<!-- <span class="mdui-chip-title">查看标签</span> -->
                         <span class="mdui-chip-title"><?php $this->tags(','); ?></span>
 					</div>
-					<!-- <ul class="mdui-menu" id="posttag<?php echo $this->cid(); ?>">
+					<!-- <ul class="mdui-menu" id="posttag?php echo $this->cid(); ?>">
 						<li class="mdui-menu-item mdui-ripple">
 						?php $this->tags('</li><li class="mdui-menu-item mdui-ripple">',true,''); ?>
 						</li>
@@ -59,7 +59,7 @@ $plugin=Typecho_Plugin::export();
 					<?php } ?>
 					<!-- <div class="mdui-chip mdui-hidden-sm-down">
 						<span class="mdui-chip-icon mdui-color-theme-accent"><i class="mdui-icon material-icons">&#xe0b9;</i></span>
-						<span class="mdui-chip-title"><a href="<?php $this->permalink(); ?>#comments"><?php $this->commentsNum('0 条评论', '1 条评论', '%d 条评论'); ?></a></span>
+						<span class="mdui-chip-title"><a href="?php $this->permalink(); ?>#comments">?php $this->commentsNum('0 条评论', '1 条评论', '%d 条评论'); ?></a></span>
 					</div> -->
 					<a href="<?php $this->permalink(); ?>" class="mdui-btn mdui-ripple mdui-color-theme-accent mdui-float-right">阅读全文</a>
 				</div>

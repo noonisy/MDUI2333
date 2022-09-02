@@ -1,7 +1,7 @@
 <?php
 define('Version','1.0.2');
 function asseturl($url,$type=false){
-	$debug=false;if ($debug) return Helper::options()->themeUrl.'/'.$url;
+	$debug=true;if ($debug) return Helper::options()->themeUrl.'/'.$url;
 	$pos=strpos($url,'.');$name=substr($url,$pos);if ($name=='.js' || $name=='.css') $url=str_replace($name,'.min'.$name,$url);
 	$origin=false;if ($type && !$origin) return Helper::options()->themeUrl.'/'.$url;
 	return 'https://cdn.jsdelivr.net/gh/noonisy/MDUI2333@'.Version.'/'.$url;
