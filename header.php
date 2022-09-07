@@ -6,6 +6,17 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="renderer" content="webkit">
 	<meta name="theme-color" content="<?php echo ThemePrimary(); ?>">
+    <?php if ($this->is('post')) : ?>
+    <meta property="og:site_name" content="<?php $this->options->title() ?>" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="<?php $this->permalink() ?>" />
+    <meta property="og:title" content="<?php $this->title() ?>" />
+    <meta property="og:description" content="<?php $this->description(); ?>" />
+    <meta property="og:category" content="<?php $this->category(',', false); ?>" />
+    <meta property="article:author" content="<?php $this->author(); ?>" />
+    <meta property="article:publisher" content="<?php $this->options->siteUrl(); ?>" />
+    <meta property="article:published_time" content="<?php $this->date('c'); ?>" />
+    <meta property="article:tag" content="<?php $this->keywords(',');?>" /><?php endif; ?>  
 	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
 	<meta http-equiv="x-dns-prefetch-control" content="on">
 	<title><?php $this->archiveTitle(array(
@@ -68,7 +79,8 @@
 	<?php $this->header(); ?>
 </head>
 <body class="mdui-theme-primary-<?php if ($this->options->themeprimary) echo $this->options->themeprimary; else echo "indigo"; ?> mdui-theme-accent-<?php if ($this->options->themeaccent) echo $this->options->themeaccent; else echo "blue" ?> mdui-appbar-with-toolbar">
-	<div class="mdui-appbar mdui-appbar-fixed mdui-appbar-scroll-hide">
+    <div id="pjax-container">
+    <div class="mdui-appbar mdui-appbar-fixed mdui-appbar-scroll-hide">
 		<div class="mdui-toolbar mdui-color-theme">
 			<a class="mdui-btn mdui-btn-icon" id="togglesidebar"><i class="mdui-icon material-icons">&#xe5d2;</i></a>
 			<a href="<?php $this->options->siteUrl(); ?>" class="mdui-typo-title"><?php $this->options->title(); ?></a>
@@ -87,6 +99,9 @@
 				</div>
 			</div>
 			<?php } ?>
+            <?php if ($this->user->hasLogin()){ ?>
+                <a href="<?php $this->options->adminUrl(); ?>write-post.php?cid=<?php echo $this->cid; ?>" target="_blank" mdui-tooltip="{content:'编辑该文章'}"><i class="mdui-icon material-icons">&#xe3c9;</i></a>
+            <?php } ?>
 			<?php if ($this->options->travelling=='true'){ ?>
 				<a href="https://travellings.now.sh/" target="_blank" class="mdui-btn mdui-btn-icon mdui-hidden-xs-down" mdui-tooltip="{content:'开往-友链接力'}"><i class="mdui-icon material-icons">&#xe163;</i></a>
 			<?php } ?>
@@ -104,4 +119,5 @@
 			<div class="mdui-progress"><div class="mdui-progress-indeterminate"></div></div>
 		</div>
 	</div>
-	<div id="pjax-container">
+	
+    

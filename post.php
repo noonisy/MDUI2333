@@ -44,9 +44,9 @@
 						<span class="mdui-chip-icon mdui-color-theme-accent"><i class="mdui-icon material-icons">&#xe0b9;</i></span>
 						<span class="mdui-chip-title"><a href="?php $this->permalink(); ?>#comments">?php $this->commentsNum('0 条评论', '1 条评论', '%d 条评论'); ?></a></span>
 					</div> -->
-					<?php if ($this->user->hasLogin()){ ?>
-						<a href="<?php $this->options->adminUrl(); ?>write-post.php?cid=<?php echo $this->cid; ?>" target="_blank" class="mdui-btn mdui-btn-icon mdui-color-theme-accent mdui-ripple mdui-float-right mdui-hidden-sm-down" mdui-tooltip="{content:'编辑该文章',position:'right'}"><i class="mdui-icon material-icons">&#xe3c9;</i></a>
-					<?php } ?>
+                    <!-- ?php if ($this->user->hasLogin()){ ?>
+						<a href="?php $this->options->adminUrl(); ?>write-post.php?cid=?php echo $this->cid; ?>" target="_blank" class="mdui-btn mdui-btn-icon mdui-color-theme-accent mdui-ripple mdui-float-right mdui-hidden-sm-down" mdui-tooltip="{content:'编辑该文章',position:'right'}"><i class="mdui-icon material-icons">&#xe3c9;</i></a>
+					?php } ?> -->
 				</div>
 				<div class="mdui-divider"></div>
 				<div class="mdui-card-content post-container" style="padding-left:4%;padding-right:4%;">

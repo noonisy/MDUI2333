@@ -1,7 +1,7 @@
 <?php if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
 <?php $plugin=Typecho_Plugin::export(); ?>
 <?php if ($this->options->AplayerCode) echo APlayerSalt($this->options->AplayerCode); ?>
-<a class="mdui-fab mdui-fab-fixed mdui-fab-mini mdui-color-theme-accent mdui-ripple mdui-fab-hide" id="gototop" style="z-index:1"><i class="mdui-icon material-icons">&#xe316;</i></a>
+<a class="mdui-fab mdui-fab-fixed mdui-fab-mini mdui-color-theme-accent mdui-ripple mdui-fab-hide" id="gototop" style="z-index:1"><i class="mdui-icon material-icons">&#xe316;</i></a>               
 <footer>
 	<div class="mdui-color-white">
 		<div class="mdui-container">
