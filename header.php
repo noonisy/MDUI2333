@@ -6,8 +6,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="renderer" content="webkit">
 	<meta name="theme-color" content="<?php echo ThemePrimary(); ?>">
-    <?php if ($this->is('post')) : ?>
-    <meta property="og:site_name" content="<?php $this->options->title() ?>" />
+    <?php if ($this->is('post') || $this->is('index')) : ?><meta property="og:site_name" content="<?php $this->options->title() ?>" />
     <meta property="og:type" content="article" />
     <meta property="og:url" content="<?php $this->permalink() ?>" />
     <meta property="og:title" content="<?php $this->title() ?>" />
@@ -99,7 +98,7 @@
 				</div>
 			</div>
 			<?php } ?>
-            <?php if ($this->user->hasLogin()){ ?>
+            <?php if ($this->user->hasLogin() && $this->is('post')){ ?>
                 <a href="<?php $this->options->adminUrl(); ?>write-post.php?cid=<?php echo $this->cid; ?>" target="_blank" mdui-tooltip="{content:'编辑该文章'}"><i class="mdui-icon material-icons">&#xe3c9;</i></a>
             <?php } ?>
 			<?php if ($this->options->travelling=='true'){ ?>
