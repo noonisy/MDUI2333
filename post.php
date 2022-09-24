@@ -44,9 +44,9 @@
 						<span class="mdui-chip-icon mdui-color-theme-accent"><i class="mdui-icon material-icons">&#xe0b9;</i></span>
 						<span class="mdui-chip-title"><a href="?php $this->permalink(); ?>#comments">?php $this->commentsNum('0 条评论', '1 条评论', '%d 条评论'); ?></a></span>
 					</div> -->
-                    <!-- ?php if ($this->user->hasLogin()){ ?>
-						<a href="?php $this->options->adminUrl(); ?>write-post.php?cid=?php echo $this->cid; ?>" target="_blank" class="mdui-btn mdui-btn-icon mdui-color-theme-accent mdui-ripple mdui-float-right mdui-hidden-sm-down" mdui-tooltip="{content:'编辑该文章',position:'right'}"><i class="mdui-icon material-icons">&#xe3c9;</i></a>
-					?php } ?> -->
+					<?php if ($this->user->hasLogin()){ ?>
+						<a href="<?php $this->options->adminUrl(); ?>write-post.php?cid=<?php echo $this->cid; ?>" target="_blank" class="mdui-btn mdui-btn-icon mdui-color-theme-accent mdui-ripple mdui-float-right mdui-hidden-sm-down" mdui-tooltip="{content:'编辑该页面',position:'right'}"><i class="mdui-icon material-icons">&#xe3c9;</i></a>
+					<?php } ?>
 				</div>
 				<div class="mdui-divider"></div>
 				<div class="mdui-card-content post-container" style="padding-left:4%;padding-right:4%;">
@@ -99,9 +99,18 @@
 		  				<?php } ?>
 					</div>
                     <div class="mdui-card-content" style="display: flex;justify-content: right;">
-                        <span>最后编辑于：<?php echo date('Y 年 m 月 d 日 H:i' , $this->modified); ?></span>
+                        <span>最后编辑于：<?php echo date('Y 年 m 月 d 日 H:i' , $this->modified); ?></span><br>
                     </div>
 				</div>
+				<div class="mdui-divider"></div>
+                <div class="mdui-card-actions" >
+                    <div class="mdui-card-content mdui-float-left">
+                        <?php $this->thePrev('<button class="mdui-btn mdui-btn-raised">上一篇：%s</button>','<button class="mdui-btn mdui-btn-raised" disabled>没有上一篇</button>'); ?>
+                    </div>
+                    <div class="mdui-card-content mdui-float-right">
+                        <?php $this->theNext('<button class="mdui-btn mdui-btn-raised">下一篇：%s</button>','<button class="mdui-btn mdui-btn-raised" disabled>没有下一篇</button>'); ?>
+                    </div>
+                </div>
 				<div class="mdui-divider"></div>
 				<?php $this->need('comments.php'); ?>
 			</div>

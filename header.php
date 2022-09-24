@@ -78,7 +78,6 @@
 	<?php $this->header(); ?>
 </head>
 <body class="mdui-theme-primary-<?php if ($this->options->themeprimary) echo $this->options->themeprimary; else echo "indigo"; ?> mdui-theme-accent-<?php if ($this->options->themeaccent) echo $this->options->themeaccent; else echo "blue" ?> mdui-appbar-with-toolbar">
-    <div id="pjax-container">
     <div class="mdui-appbar mdui-appbar-fixed mdui-appbar-scroll-hide">
 		<div class="mdui-toolbar mdui-color-theme">
 			<a class="mdui-btn mdui-btn-icon" id="togglesidebar"><i class="mdui-icon material-icons">&#xe5d2;</i></a>
@@ -98,9 +97,6 @@
 				</div>
 			</div>
 			<?php } ?>
-            <?php if ($this->user->hasLogin() && $this->is('post')){ ?>
-                <a href="<?php $this->options->adminUrl(); ?>write-post.php?cid=<?php echo $this->cid; ?>" target="_blank" mdui-tooltip="{content:'编辑该文章'}"><i class="mdui-icon material-icons">&#xe3c9;</i></a>
-            <?php } ?>
 			<?php if ($this->options->travelling=='true'){ ?>
 				<a href="https://travellings.now.sh/" target="_blank" class="mdui-btn mdui-btn-icon mdui-hidden-xs-down" mdui-tooltip="{content:'开往-友链接力'}"><i class="mdui-icon material-icons">&#xe163;</i></a>
 			<?php } ?>
@@ -118,5 +114,4 @@
 			<div class="mdui-progress"><div class="mdui-progress-indeterminate"></div></div>
 		</div>
 	</div>
-	
-    
+    <div id="pjax-container">
