@@ -202,3 +202,54 @@ function ajaxcomment(options){ //AJAX评论
 		return false;
 	});
 }
+function initCodeCopy() {
+    const codeblocks = document.querySelectorAll("pre");
+    
+    codeblocks.forEach(block => {
+        if (!block.querySelector('.copy-button')) {
+            block.style.position = "relative";
+            const copy = document.createElement("div");
+            copy.className = "copy-button";
+            copy.innerHTML = "COPY";
+            copy.style.cssText = "position: absolute; right: 4px; top: 4px; background-color: white; padding: 2px 8px; border-radius: 4px; cursor: pointer; box-shadow: 0 2px 4px rgba(255,0,0,0.05), 0 2px 4px rgba(255,0,0,0.05); visibility: hidden;";
+            block.appendChild(copy);
+        }
+    });
+}
+
+function handleCodeCopy(e) {
+    if (e.target.classList.contains('copy-button')) {
+        const pre = e.target.closest('pre');
+        const code = pre.querySelector('code');
+        const range = document.createRange();
+        range.selectNode(code);
+        const selection = window.getSelection();
+        selection.removeAllRanges();
+        selection.addRange(range);
+        document.execCommand('copy');
+        selection.removeAllRanges();
+
+        e.target.innerHTML = "COPY SUCCESSFUL";
+        setTimeout(() => {
+            e.target.innerHTML = "COPY";
+        }, 1000);
+    }
+}
+
+function handleCodeBlockHover(e) {
+    const pre = e.target.closest('pre');
+    if (pre) {
+        const copyButton = pre.querySelector('.copy-button');
+        if (copyButton) {
+            copyButton.style.visibility = e.type === 'mouseover' ? 'visible' : 'hidden';
+        }
+    }
+}
+
+// 在文档加载完成后初始化
+document.addEventListener('DOMContentLoaded', () => {
+    initCodeCopy();
+    document.body.addEventListener('click', handleCodeCopy);
+    document.body.addEventListener('mouseover', handleCodeBlockHover);
+    document.body.addEventListener('mouseout', handleCodeBlockHover);
+});
