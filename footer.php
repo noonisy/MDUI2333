@@ -34,13 +34,13 @@
 </footer>
 <script>
 	globallistener();changetitle();
-    // function loadScript(url, callback) {
-    //     var script = document.createElement("script");
-    //     script.type = "text/javascript";
-    //     script.src = url;
-    //     script.onload = callback;
-    //     document.head.appendChild(script);
-    // }
+    function loadScript(url, callback) {
+        var script = document.createElement("script");
+        script.type = "text/javascript";
+        script.src = url;
+        script.onload = callback;
+        document.head.appendChild(script);
+    }
 	$(function(){
 		showannouncement('<?php echo $this->options->announcement; ?>','<?php echo $this->options->announcementpos; ?>');
 		highlightinit('<?php echo $this->options->highlightmode; ?>');codelinenumber('#pjax-container');
@@ -54,12 +54,17 @@
 		highlightreload('<?php echo $this->options->highlightmode; ?>','#pjax-container');closeoverlay();
         initCodeCopy();
 	});
+    // $(document).on('ready pjax:end', function(e){
+    //     $(e.target).ready(function(){
+            
+    //     });
+    // });
 	$(document).on('pjax:end',function(){
 		changetitle();showposttoc(<?php echo $this->options->posttoc=='true'; ?>);
 		mdui.mutation();<?php if (array_key_exists('Meting',$plugin['activated'])){ ?>loadMeting();<?php } ?>		
-        // $.getScript("?php $this->options->themeUrl('js/codecopy.js'); ?>");  //在complete后, end前
-        // loadScript("?php $this->options->themeUrl('js/codecopy.js'); ?>")
-        // loadScript("?php $this->options->themeUrl('js/bundle.js'); ?>")
+        // <php if (isset($plugins['activated']['WordCloud'])){ ?>
+        //     <php WordCloud_Plugin::renderWordCloud(); ?>
+        // <php } ?>
         <?php echo $this->options->pjaxreload; ?>
 	});
 	$(document).on('pjax:error',function(e){closeoverlay();mdui.alert('PJAX加载超时，请检查网络','加载失败');e.preventDefault();});
