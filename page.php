@@ -13,18 +13,6 @@
 					</div>
 				</div>
 				<div class="mdui-card-actions">
-					<!-- <div class="mdui-chip">
-						<img class="mdui-chip-icon mdui-color-grey-200" src="?php echo GravatarURL($this->author->mail,100); ?>" />
-						<span class="mdui-chip-title"><a href="?php $this->author->permalink(); ?>">?php $this->author(); ?></a></span>
-					</div> -->
-					<!-- <div class="mdui-chip">
-						<span class="mdui-chip-icon mdui-color-theme-accent"><i class="mdui-icon material-icons">&#xe8df;</i></span>
-						<span class="mdui-chip-title">?php $this->date(); ?></span>
-					</div>
-					<div class="mdui-chip" id="commentsnumber">
-						<span class="mdui-chip-icon mdui-color-theme-accent"><i class="mdui-icon material-icons">&#xe0b9;</i></span>
-						<span class="mdui-chip-title"><a href="?php $this->permalink(); ?>#comments">?php $this->commentsNum('0 条评论', '1 条评论', '%d 条评论'); ?></a></span>
-					</div> -->
 					<?php if ($this->user->hasLogin()){ ?>
 						<a href="<?php $this->options->adminUrl(); ?>write-page.php?cid=<?php echo $this->cid; ?>" target="_blank" class="mdui-btn mdui-btn-icon mdui-color-theme-accent mdui-ripple mdui-float-right mdui-hidden-sm-down" mdui-tooltip="{content:'编辑该页面',position:'right'}"><i class="mdui-icon material-icons">&#xe3c9;</i></a>
 					<?php } ?>
