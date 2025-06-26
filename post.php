@@ -24,10 +24,12 @@
                     <div class="mdui-chip">
                         <span class="mdui-chip-title">阅读：<?php echo ViewsCounter_Plugin::getViews(); ?></span>
 					</div>
+                    <?php if ($this->user->hasLogin()){ ?>
                     <div class="mdui-chip">
 						<!-- <span class="mdui-chip-icon mdui-color-theme-accent"><i class="mdui-icon material-icons">&#xe5c3;</i></span> -->
 						<span class="mdui-chip-title"><?php $this->category(','); ?></span>
 					</div>
+                    
 					<?php if (count($this->tags)>0){ ?>
 					<div class="mdui-chip" mdui-menu="{target:'#posttag<?php echo $this->cid(); ?>',position:'top'}">
 						<!-- <span class="mdui-chip-icon mdui-color-theme-accent"><i class="mdui-icon material-icons">&#xe54e;</i></span> -->
@@ -44,7 +46,6 @@
 						<span class="mdui-chip-icon mdui-color-theme-accent"><i class="mdui-icon material-icons">&#xe0b9;</i></span>
 						<span class="mdui-chip-title"><a href="?php $this->permalink(); ?>#comments">?php $this->commentsNum('0 条评论', '1 条评论', '%d 条评论'); ?></a></span>
 					</div> -->
-					<?php if ($this->user->hasLogin()){ ?>
 						<a href="<?php $this->options->adminUrl(); ?>write-post.php?cid=<?php echo $this->cid; ?>" target="_blank" class="mdui-btn mdui-btn-icon mdui-color-theme-accent mdui-ripple mdui-float-right mdui-hidden-sm-down" mdui-tooltip="{content:'编辑该页面',position:'right'}"><i class="mdui-icon material-icons">&#xe3c9;</i></a>
 					<?php } ?>
 				</div>
@@ -105,10 +106,10 @@
 				<div class="mdui-divider"></div>
                 <div class="mdui-card-actions" >
                     <div class="mdui-card-content mdui-float-left">
-                        <?php $this->thePrev('<button class="mdui-btn mdui-btn-raised">上一篇：%s</button>','<button class="mdui-btn mdui-btn-raised" disabled>没有上一篇</button>'); ?>
+                        <?php $this->thePrev('<button class="mdui-btn mdui-btn-raised">Previous：%s</button>','<button class="mdui-btn mdui-btn-raised" disabled>No Previous</button>'); ?>
                     </div>
                     <div class="mdui-card-content mdui-float-right">
-                        <?php $this->theNext('<button class="mdui-btn mdui-btn-raised">下一篇：%s</button>','<button class="mdui-btn mdui-btn-raised" disabled>没有下一篇</button>'); ?>
+                        <?php $this->theNext('<button class="mdui-btn mdui-btn-raised">Next：%s</button>','<button class="mdui-btn mdui-btn-raised" disabled>No Next</button>'); ?>
                     </div>
                 </div>
 				<div class="mdui-divider"></div>
