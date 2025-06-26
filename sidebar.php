@@ -40,7 +40,7 @@
 				<i class="mdui-collapse-item-arrow mdui-icon material-icons">&#xe313;</i>
 			</div>
 			<div class="mdui-collapse-item-body mdui-list" id="recentcomment">
-				<?php $this->widget('Widget_Comments_Recent@sidebar','pageSize=5&ignoreAuthor=true')->to($comment); ?>
+				<?php $this->widget('Widget_Comments_Recent@sidebar','pageSize=3&ignoreAuthor=true')->to($comment); ?>
 				<?php while($comment->next()){ ?>
 				<a href="<?php $comment->permalink(); ?>" class="mdui-list-item mdui-ripple" mdui-tooltip="{content:'<?php $comment->date(); ?>',position:'right'}">
 					<div class="mdui-chip mdui-text-center" style="width:100%;">
@@ -52,7 +52,6 @@
 			</div>
 		</div>
         <?php } ?>
-        <?php if ($this->user->hasLogin()){ ?>
             <div class="mdui-collapse-item">
                 <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
                     <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-blue">&#xe02f;</i>
@@ -61,8 +60,17 @@
                     <!-- <i class="mdui-collapse-item-arrow mdui-icon material-icons">&#xe313;</i> -->
                 </div>
             </div>
-        <?php } ?>
 		<div class="mdui-divider"></div>
+        <?php if ($this->options->birthday){ ?>
+		<div class="mdui-list-item mdui-ripple">
+			<i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-brown">&#xe192;</i>
+			<?php Typecho_Widget::widget('Widget_Stat')->to($stat); ?>
+			<div class="mdui-list-item-content">运行天数</div>
+			<div class="mdui-text-color-brown-900"><?php echo ceil((time()-strtotime($this->options->birthday))/86400); ?></div>
+		</div>
+		<?php } ?>
+        <div class="mdui-divider"></div>
+        <?php if ($this->user->hasLogin()){ ?>
 		<?php $this->widget('Widget_Metas_Category_List')->to($category);$last=-1; ?>
 		<?php while ($category->next()){ ?>
 			<?php if ($category->levels==0){ ?>
@@ -91,6 +99,8 @@
 		<?php } ?>
 			</div>
 		</div>
+        <?php } ?>
+        
 		<?php $this->widget('Widget_Contents_Page_List')->to($tagcloud); ?>
 		<?php while ($tagcloud->next()){ ?>
 			<?php if ($tagcloud->template=='page-tags.php'){ ?>
@@ -103,27 +113,30 @@
 		<div class="mdui-divider"></div>
 		<?php $this->widget('Widget_Contents_Page_List')->to($pages); ?>
 		<?php while ($pages->next()){ ?>
-			<?php if ($pages->template!='page-tags.php'){$fields=unserialize($pages->fields); ?>
+			<?php if ($pages->template!='page-tags.php'){
+				$fields=unserialize($pages->fields);
+				// 根据页面类型设置不同的图标
+				$icon = '&#xe24d;'; // 默认图标
+				if($pages->slug == 'diary') {
+					$icon = '&#x1F4AD;'; // 日记图标
+				} else if($pages->slug == 'about') {
+					$icon = '&#xe7fd;'; // 关于页面使用人物图标
+				} else {
+					$icon = empty($fields['description']) ? '&#xe24d;' : $fields['description'];
+				}
+			?>
 		<a href="<?php $pages->permalink(); ?>" class="mdui-list-item mdui-ripple">
-			<i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-green"><?php echo empty($fields['description'])?'&#xe24d;':$fields['description']; ?></i>
+				<i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-green"><?php echo $icon; ?></i>
 			<div class="mdui-list-item-content"><?php $pages->title(); ?></div>
 		</a>
 			<?php } ?>
 		<?php } ?>
-		<div class="mdui-divider"></div>
 		<!-- <div class="mdui-list-item mdui-ripple"> -->
 			<!-- <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-brown">&#xe02f;</i>
 			?php Typecho_Widget::widget('Widget_Stat')->to($stat); ?>
 			<div class="mdui-list-item-content">文章总数</div>
 			<div class="mdui-text-color-brown-900">?php $stat->publishedPostsNum(); ?></div> -->
 		<!-- </div> -->
-		<?php if ($this->options->birthday){ ?>
-		<div class="mdui-list-item mdui-ripple">
-			<i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-brown">&#xe192;</i>
-			<?php Typecho_Widget::widget('Widget_Stat')->to($stat); ?>
-			<div class="mdui-list-item-content">运行天数</div>
-			<div class="mdui-text-color-brown-900"><?php echo ceil((time()-strtotime($this->options->birthday))/86400); ?></div>
-		</div>
-		<?php } ?>
+
 	</div>
 </div>
