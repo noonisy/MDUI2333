@@ -16,7 +16,7 @@ function threadedComments($comment,$options){
 			<div class="mdui-card-header">
 				<img class="mdui-card-header-avatar" src="'.GravatarURL($comment->mail,100).'" />
 				<div class="mdui-card-header-title">'.$comment->author.'</div>
-				<div class="mdui-card-header-subtitle">'.$comment->date->format(Helper::options()->commentDateFormat).'</div>
+				<div class="mdui-card-header-subtitle">'.$comment->date->format('Y-m-d H:i:s').'</div>
 			</div>
 			<div class="mdui-card-content dairy-content">'.RewriteComment($comment).'</div>
 		</div>
@@ -24,6 +24,15 @@ function threadedComments($comment,$options){
 	$GLOBALS['total']++;
 }
 ?>
+<?php if ($this->user->hasLogin()){ ?>
+<style>
+/* 滚动条轨道 */
+::-webkit-scrollbar-track {
+    background: rgba(180, 180, 180, 1);  /* 轨道背景色 */
+    border-radius: 4px;  /* 圆角 */
+}
+
+</style>
 <div class="mdui-container mdui-m-b-2">
 	<?php $this->comments()->to($comments); ?>
 	<?php $comments->listComments(array('before'=>'','after'=>'')); ?>
@@ -31,19 +40,38 @@ function threadedComments($comment,$options){
 	<?php
 	$last='19260817';
 	for ($i=0;$i<$total;$i++){
-		if ($diary[$i][0]->format('Y-n')!=$last) echo '<a href="#'.$diary[$i][0]->format('Y-n').'" class="mdui-ripple">'.$diary[$i][0]->format('Y.n').'</a>';
+		if ($diary[$i][0]->format('Y-n')!=$last) echo '<a href="#'.$diary[$i][0]->format('Y-n').'" class="mdui-ripple" onclick="showDiary(\''.$diary[$i][0]->format('Y-n').'\')">'.$diary[$i][0]->format('Y.n').'</a>';
 		$last=$diary[$i][0]->format('Y-n');
 	}
 	?>
 	</div>
 	<?php if ($this->user->hasLogin()){ ?>
-	<div class="mdui-typo mdui-card mdui-m-t-2">
-		<div class="mdui-card-header">
-			<i class="mdui-card-header-avatar mdui-text-color-theme-accent mdui-icon material-icons" style="font-size:35px">&#xe3c9;</i>
-			<div class="mdui-card-header-title">发表日记</div>
-			<div class="mdui-card-header-subtitle">在下方输入日记内容</div>
-			<a href="<?php $this->options->adminUrl(); ?>manage-comments.php?cid=<?php echo $this->cid; ?>" target="_blank" class="mdui-btn mdui-btn-icon mdui-color-theme-accent mdui-color-theme-accent mdui-float-right mdui-ripple" style="position:absolute;right:16px;top:16px" mdui-tooltip="{content:'管理日记',position:'top'}"><i class="mdui-icon material-icons">&#xe149;</i></a>
+    <?php
+	$last='19260817';
+	for ($i=0;$i<$total;$i++){
+		if ($diary[$i][0]->format('Y-n')!=$last){
+			if ($last!='19260817') echo '
+			</div>
 		</div>
+			';
+			echo '
+		<div class="mdui-typo diary-section" id="'.$diary[$i][0]->format('Y-n').'" style="display:none;">
+			<div class="mdui-row-xs-1 mdui-row-sm-2 mdui-row-md-3 mdui-row-lg-4 mdui-row-xl-4">
+			';
+		}
+		echo $diary[$i][1];
+		$last=$diary[$i][0]->format('Y-n');
+	}
+	if ($last!='19260817') echo '
+		</div>
+	</div>';
+	?>
+    <div  class="dairy-content"></div>
+	<div class="mdui-typo mdui-card mdui-m-t-2">
+			<!-- <i class="mdui-card-header-avatar mdui-text-color-theme-accent mdui-icon material-icons" style="font-size:35px">&#xe3c9;</i> -->
+			<!-- <div class="mdui-card-header-title"></div> -->
+			<!-- <div class="mdui-card-header-subtitle">在下方输入日记内容</div> -->
+			<!-- <a href="<php $this->options->adminUrl(); ?>manage-comments.php?cid=<php echo $this->cid; ?>" target="_blank" class="mdui-btn mdui-btn-icon mdui-color-theme-accent mdui-color-theme-accent mdui-float-right mdui-ripple" style="position:absolute;right:16px;top:16px" mdui-tooltip="{content:'管理日记',position:'top'}"><i class="mdui-icon material-icons">&#xe149;</i></a> -->
 		<div class="mdui-card-content mdui-row">
 			<?php if ($this->allow('comment')){ ?>
 			<div id="<?php $this->respondId(); ?>">
@@ -63,27 +91,8 @@ function threadedComments($comment,$options){
 		</div>
 	</div>
 	<?php } ?>
-	<?php
-	$last='19260817';
-	for ($i=0;$i<$total;$i++){
-		if ($diary[$i][0]->format('Y-n')!=$last){
-			if ($last!='19260817') echo '
-			</div>
-		</div>
-			';
-			echo '
-		<div class="mdui-typo" id="'.$diary[$i][0]->format('Y-n').'">
-			<div class="mdui-row-xs-1 mdui-row-sm-2 mdui-row-md-3 mdui-row-lg-4 mdui-row-xl-4">
-			';
-		}
-		echo $diary[$i][1];
-		$last=$diary[$i][0]->format('Y-n');
-	}
-	if ($last!='19260817') echo '
-		</div>
-	</div>';
-	?>
 </div>
+<?php } ?>
 <script>
 	var QAQTab=new mdui.Tab('#QAQTab');
 	$('#QAQ').on('open.mdui.dialog',function(){QAQTab.handleUpdate();});
@@ -102,6 +111,25 @@ function threadedComments($comment,$options){
 			):(myField.value+=tag,myField.focus());
 		}
 	}
+
+	function showDiary(yearMonth) {
+		document.querySelectorAll('.diary-section').forEach(function(section) {
+			section.style.display = 'none';
+		});
+		
+		var selectedSection = document.getElementById(yearMonth);
+		if (selectedSection) {
+			selectedSection.style.display = 'block';
+		}
+	}
+
+	window.addEventListener('DOMContentLoaded', function() {
+		var firstTab = document.querySelector('.mdui-tab a');
+		if (firstTab) {
+			var yearMonth = firstTab.getAttribute('href').substring(1);
+			showDiary(yearMonth);
+		}
+	});
 </script>
 <?php $this->need('sidebar.php'); ?>
 <?php $this->need('footer.php'); ?>
